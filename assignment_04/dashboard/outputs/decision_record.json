@@ -1,0 +1,46 @@
+{
+  "analysis_id": "20261122-212633",
+  "saved_at": "2026-11-22 22:38:45",
+  "data_file": "WineQuality.csv",
+  "rows_in_file": 2700,
+  "target": "quality",
+  "positive_class": "Good",
+  "preparation_choices": {
+    "drop_dups": true,
+    "missing_rule": "Drop rows with missing values",
+    "outlier_rule": "Keep outliers",
+    "drop_cols": []
+  },
+  "preparation_steps_applied": {
+    "Duplicate rows": "removed 527",
+    "Missing values": "none found, no action needed",
+    "Outliers": "kept",
+    "Dropped columns": "none",
+    "Target": "Good = 1, everything else = 0"
+  },
+  "prepared_rows": 2173,
+  "input_columns": 11,
+  "testing_share": 0.3,
+  "random_state": 1,
+  "testing_rows": 652,
+  "cost_matrix": {
+    "TN": 0.0,
+    "FP": 20.0,
+    "FN": 0.0,
+    "TP": -12.0
+  },
+  "expected_cost_by_option": {
+    "Run 6: Random forest ({'n_estimators': 200, 'max_depth': 10})": -1572.0,
+    "Run 3: Neural network (MLP) (GridSearchCV best: {'alpha': 0.0001})": -1568.0,
+    "Run 4: Bagging ({'n_estimators': 50})": -1500.0,
+    "Run 5: Bagging (GridSearchCV best: {'n_estimators': 100})": -1464.0,
+    "Run 2: K-nearest neighbor ({'n_neighbors': 10})": -1344.0,
+    "Run 1: Decision tree ({'max_depth': 5, 'min_samples_leaf': 1})": -984.0,
+    "Baseline: predict negative for everyone": 0.0,
+    "Baseline: predict positive for everyone": 5104.0
+  },
+  "lowest_cost_option": "Run 6: Random forest ({'n_estimators': 200, 'max_depth': 10})",
+  "recommended_run": "Run 1: Decision tree ({'max_depth': 5, 'min_samples_leaf': 1})",
+  "recommendation": "I recommend the random forest model, since it has the lowest negative cost test data (-$1,572 in net saving). Compared to the negative baselines, it saves $1,572. Compared to the positive baselines, it saves $6,676. However, the biggest limitation with random forest is that its lead is not reliable. The neural network is only $4 behind it (\u2212$1,568), approximately one case flipping from correct to incorrect, and bagging is only $72 behind. So while the data supports random forest, neural network and bagging all being better than decision tree and KNN, it does not support the random forest being truly better than the neural network.",
+  "model_runs_file": "model_runs.csv"
+}
